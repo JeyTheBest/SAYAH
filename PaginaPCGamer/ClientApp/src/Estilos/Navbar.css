@@ -1,0 +1,157 @@
+﻿.navbar {
+    background-color: black;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 10px;
+    /* margin-bottom: 10px;*/
+
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    
+}
+
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+        margin-bottom: -8px;
+    }
+
+    .navbar ul li a {
+        display: flex;
+        color: black;
+        text-decoration: none;
+        border-radius: 10px;
+    }
+
+
+
+#login-dropdown {
+    /* Ajusta la posición vertical según tu diseño */
+
+    background-color: #ff9c00; /* Cambia el color según tu preferencia */
+    color: black;
+    border: none;
+    display: flex;
+    
+}
+
+#login-dropdown:hover{
+    transition: transform 0.5s ease;
+    background-color: #ff7a00;
+    transform: scale(1.1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 10px;
+    transition: border-radius 1s ease;
+
+}
+#boton:hover {
+    transition: transform 0.5s ease;
+    background-color: #ff7a00;
+    transform: scale(1.1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 10px;
+    transition: border-radius 0.5s ease;
+}
+
+
+#boton {
+    background-color: #ff9c00; /* Cambia el color según tu preferencia */
+    color: black;
+    border: none;
+    
+}
+
+
+#baner {
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+#titulo {
+    font-weight: bold;
+    color: #ff9c00;
+}
+
+#pc {
+    background-color: white;
+    margin-top: 30px;
+}
+
+.imagen {
+    border-radius: 10px;
+ 
+}
+
+#final {
+    background-color: black;
+    margin-top: 30px;
+}
+#final1 {
+    background-color: black;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    /* margin-top: 30px;*/
+}
+
+.card{
+    box-shadow:12px 12px 7px rgb(128, 128, 128);
+}
+
+.card:hover{
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+    /*box-shadow:12px 12px 7px rgb(128, 128, 128);*/
+}
+.custom-dropdown-menu {
+    width: 1180px;
+    height: 550px; /* Ajusta el valor según tus necesidades */
+    display: flex;
+}
+
+    
+
+.custom-item {
+    font-size: 18px; /* Ajusta el tamaño de fuente según tus necesidades */
+    padding: 10px 20px; /* Ajusta el padding según tus necesidades */
+   
+
+}
+
+.custom-item:hover{
+    background-color:dimgrey;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
