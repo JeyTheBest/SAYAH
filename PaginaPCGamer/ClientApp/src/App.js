@@ -10,11 +10,15 @@ const App = () => {
     return (
         
         <div className="container-fluid">
+
+
             <Routes>
                 <Route path="/" element={<Navbar />}>
+
                 </Route>
                 <Route path="/Ubicacion" element={<Ubicacion />} />
                 <Route path="/Productos" element={<Productos />} />
+
 
                 
             </Routes>

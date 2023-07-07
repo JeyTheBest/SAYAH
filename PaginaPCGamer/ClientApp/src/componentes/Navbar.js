@@ -1,10 +1,15 @@
 ﻿import React, { useState } from 'react';
+
 import {  DropdownButton, Modal, Button, Form } from 'react-bootstrap';
 import '../Estilos/Navbar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import imagen from '../assets/logo.png';
 import { Outlet, Link } from "react-router-dom";
+
+
+//import Carrusel from '../componentes/carrusel.js';
+
 
 import Baner from '../componentes/Baner.js';
 import PartesCom from '../componentes/PartesCom.js';
@@ -21,6 +26,8 @@ import logo from '../assets/logo.png';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap'
 
 const Navbar = () => {
+
+
     const [showSubMenu, setShowSubMenu] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -29,7 +36,10 @@ const Navbar = () => {
     const [registerUsername, setRegisterUsername] = useState('');
     const [registerEmail, setRegisterEmail] = useState('');
     const [registerPassword, setRegisterPassword] = useState('');
+    const [dropdownProductos, setDropdownProductos] = useState(false);
+    const [dropdownInicioSesion, setDropdownInicioSesion] = useState(false);
     const [dropdown, setDropdown] = useState(false);
+
 
     const AbrirCerrarDropdow = () => {
         setDropdown(!dropdown);
@@ -107,25 +117,28 @@ const Navbar = () => {
         setShowRegisterModal(false);
     };
 
+    
+
     return (
         <div> 
         
-            
-           <nav className="navbar">
-                
+           
+            <nav bg="light" expand="lg" className="navbar">     
             <ul>
                 <li>
-                <img src={imagen} width="50px" height="50px"/>
+                   <img src={imagen} width="50px" height="50px" alt="logo"  />
                 </li>
 
                 <li> 
                     <a href="/" className="btn btn-danger" id="boton"><i className="bi bi-award-fill"></i>Inicio</a>
-                    </li>
-                    <Dropdown isOpen={dropdown} toggle={AbrirCerrarDropdow}>
+                </li>
+
+                
+                    <Dropdown isOpen={dropdownProductos} toggle={() => setDropdownProductos(!dropdownProductos)}>
                         <DropdownToggle caret id="boton">
 
-                            {/*<a href="/productos" className="btn btn-danger" id="boton"><i className="bi bi-box-fill"></i> Productos</a>*/}
-                            Productos
+                            <a ><i className="bi bi-box-fill"></i> Productos</a>
+                            {/*Productos*/}
 
                         </DropdownToggle>
 
@@ -160,117 +173,154 @@ const Navbar = () => {
                                         <DropdownItem className="custom-item">PHP</DropdownItem>
                                     </div>
                                 </div>
-                            </div>
+                                </div>
+
                         </DropdownMenu>
 
 
                     </Dropdown>
-                <li>
+                
                     
                     
-                </li>
+               
                
                 <li>
                   <a href="/Ubicacion" className="btn btn-danger" id="boton"><i className="bi bi-geo-alt-fill"></i> Ubicacion</a>
                 </li>
 
                 
-            <DropdownButton
-                id="login-dropdown"
-                    title={<><i className="bi bi-person-lines-fill "></i></>}
-                onClick={handleSubMenuClick}
-                show={showSubMenu}
-            >
-                <Dropdown.Item onClick={() => setShowLoginModal(true)}>Iniciar sesión</Dropdown.Item>
-                <Dropdown.Item onClick={() => setShowRegisterModal(true)}>Registrarse</Dropdown.Item>
+                    <Dropdown isOpen={dropdownInicioSesion} toggle={() => setDropdownInicioSesion(!dropdownInicioSesion)}>
+                        <DropdownToggle caret id="boton">
 
-             </DropdownButton>
+                            <a ><i className="bi bi-person-lines-fill "></i> Inicio de sesion</a>
+                           
+
+                        </DropdownToggle>
+
+                        <DropdownMenu className="custom-dropdown-menu-login">
+                            <div className="container">
+                                <div className="row">
+                                    <DropdownItem className="custom-item">Iniciar Sesion</DropdownItem>
+                                    <DropdownItem className="custom-item">Registrarse</DropdownItem>
+                                    
+                                </div>
+                            </div>
+
+                        </DropdownMenu>
+
+
+                    </Dropdown>
                   
-            </ul>
-            <Modal show={showLoginModal} onHide={() => setShowLoginModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Iniciar sesión</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="formLoginUsername">
-                            <Form.Label>Nombre de usuario</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Ingrese su nombre de usuario"
-                                value={loginUsername}
-                                onChange={(e) => setLoginUsername(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="formLoginPassword">
-                            <Form.Label>Contraseña</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder="Ingrese su contraseña"
-                                value={loginPassword}
-                                onChange={(e) => setLoginPassword(e.target.value)}
-                            />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowLoginModal(false)}>
-                        Cerrar
-                    </Button>
-                    <Button variant="primary" onClick={handleLogin}>
-                        Iniciar sesión
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                </ul>
 
-            <Modal show={showRegisterModal} onHide={() => setShowRegisterModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Registrarse</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="formRegisterUsername">
-                            <Form.Label>Nombre de usuario</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Ingrese un nombre de usuario"
-                                value={registerUsername}
-                                onChange={(e) => setRegisterUsername(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="formRegisterEmail">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                type="email"
-                                placeholder="Ingrese su correo electrónico"
-                                value={registerEmail}
-                                onChange={(e) => setRegisterEmail(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="formRegisterPassword">
-                            <Form.Label>Contraseña</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder="Ingrese una contraseña"
-                                value={registerPassword}
-                                onChange={(e) => setRegisterPassword(e.target.value)}
-                            />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowRegisterModal(false)}>
-                        Cerrar
-                    </Button>
-                    <Button variant="primary" onClick={handleRegister}>
-                        Registrarse
-                    </Button>
-                </Modal.Footer>
-                </Modal>
+
+
+
+
+            {/*<DropdownButton*/}
+            {/*        id="login-dropdown"*/}
+            {/*        title={<><i className="bi bi-person-lines-fill ">  </i></>}*/}
+            {/*        onClick={handleSubMenuClick}*/}
+            {/*        show={showSubMenu}*/}
+            {/*    >*/}
+
+            {/*        <Dropdown.Item onClick={() => setShowLoginModal(true)}>Iniciar sesión</Dropdown.Item>*/}
+            {/*        <Dropdown.Item onClick={() => setShowRegisterModal(true)}>Registrarse</Dropdown.Item>*/}
+
+                
+            {/*<Modal show={showLoginModal} onHide={() => setShowLoginModal(false)}>*/}
+            {/*    <Modal.Header closeButton>*/}
+            {/*        <Modal.Title>Iniciar sesión</Modal.Title>*/}
+            {/*    </Modal.Header>*/}
+            {/*    <Modal.Body>*/}
+            {/*        <Form>*/}
+            {/*            <Form.Group controlId="formLoginUsername">*/}
+            {/*                <Form.Label>Nombre de usuario</Form.Label>*/}
+            {/*                <Form.Control*/}
+            {/*                    type="text"*/}
+            {/*                    placeholder="Ingrese su nombre de usuario"*/}
+            {/*                    value={loginUsername}*/}
+            {/*                    onChange={(e) => setLoginUsername(e.target.value)}*/}
+            {/*                />*/}
+            {/*            </Form.Group>*/}
+            {/*            <Form.Group controlId="formLoginPassword">*/}
+            {/*                <Form.Label>Contraseña</Form.Label>*/}
+            {/*                <Form.Control*/}
+            {/*                    type="password"*/}
+            {/*                    placeholder="Ingrese su contraseña"*/}
+            {/*                    value={loginPassword}*/}
+            {/*                    onChange={(e) => setLoginPassword(e.target.value)}*/}
+            {/*                />*/}
+            {/*            </Form.Group>*/}
+            {/*        </Form>*/}
+            {/*    </Modal.Body>*/}
+            {/*    <Modal.Footer>*/}
+            {/*        <Button variant="secondary" onClick={() => setShowLoginModal(false)}>*/}
+            {/*            Cerrar*/}
+            {/*        </Button>*/}
+            {/*        <Button variant="primary" onClick={handleLogin}>*/}
+            {/*            Iniciar sesión*/}
+            {/*        </Button>*/}
+            {/*    </Modal.Footer>*/}
+            {/*</Modal>*/}
+
+            {/*<Modal show={showRegisterModal} onHide={() => setShowRegisterModal(false)}>*/}
+            {/*    <Modal.Header closeButton>*/}
+            {/*        <Modal.Title>Registrarse</Modal.Title>*/}
+            {/*    </Modal.Header>*/}
+            {/*    <Modal.Body>*/}
+            {/*        <Form>*/}
+            {/*            <Form.Group controlId="formRegisterUsername">*/}
+            {/*                <Form.Label>Nombre de usuario</Form.Label>*/}
+            {/*                <Form.Control*/}
+            {/*                    type="text"*/}
+            {/*                    placeholder="Ingrese un nombre de usuario"*/}
+            {/*                    value={registerUsername}*/}
+            {/*                    onChange={(e) => setRegisterUsername(e.target.value)}*/}
+            {/*                />*/}
+            {/*            </Form.Group>*/}
+            {/*            <Form.Group controlId="formRegisterEmail">*/}
+            {/*                <Form.Label>Email</Form.Label>*/}
+            {/*                <Form.Control*/}
+            {/*                    type="email"*/}
+            {/*                    placeholder="Ingrese su correo electrónico"*/}
+            {/*                    value={registerEmail}*/}
+            {/*                    onChange={(e) => setRegisterEmail(e.target.value)}*/}
+            {/*                />*/}
+            {/*            </Form.Group>*/}
+            {/*            <Form.Group controlId="formRegisterPassword">*/}
+            {/*                <Form.Label>Contraseña</Form.Label>*/}
+            {/*                <Form.Control*/}
+            {/*                    type="password"*/}
+            {/*                    placeholder="Ingrese una contraseña"*/}
+            {/*                    value={registerPassword}*/}
+            {/*                    onChange={(e) => setRegisterPassword(e.target.value)}*/}
+            {/*                />*/}
+            {/*            </Form.Group>*/}
+            {/*        </Form>*/}
+            {/*    </Modal.Body>*/}
+            {/*    <Modal.Footer>*/}
+            {/*        <Button variant="secondary" onClick={() => setShowRegisterModal(false)}>*/}
+            {/*            Cerrar*/}
+            {/*        </Button>*/}
+            {/*        <Button variant="primary" onClick={handleRegister}>*/}
+            {/*            Registrarse*/}
+            {/*        </Button>*/}
+            {/*    </Modal.Footer>*/}
+            {/*        </Modal>*/}
+
+            {/* </DropdownButton>*/}
            
             </nav>
 
+
+
             <Baner />
+
+            
+
+           
+
             <hr />
             <div className="row justify-content-center " id="pc">
                 <div className="col-sm-6">
